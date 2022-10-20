@@ -1,16 +1,17 @@
-// Функция, возвращающая случайное целое число из переданного диапазона включительно.
+import {isCheckLength} from './util.js';
+import {createPicture} from './picture.js';
+import {createPostList} from './mock.js';
 
-const getRandomPositiveInteger = (valueA = 0, valueB = 25) => {
-  const lower = Math.ceil(Math.min(Math.abs(valueA), Math.abs(valueB)));
-  const upper = Math.floor(Math.max(Math.abs(valueA), Math.abs(valueB)));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
+const picturesListNode = document.querySelector('.pictures');
+
+const renderPicture = (pictureList) => {
+  const fragment = document.createDocumentFragment();
+
+  pictureList.forEach((item) => fragment.appendChild(createPicture(item)));
+
+  picturesListNode.appendChild(fragment);
 };
 
-// Функция для проверки максимальной длины строки
+renderPicture(createPostList);
 
-const isCheckLength = (checkString, maxLength = 200) => checkString.length <= maxLength;
-
-isCheckLength('251', getRandomPositiveInteger());
-
-export {isCheckLength, getRandomPositiveInteger};
+isCheckLength('251');

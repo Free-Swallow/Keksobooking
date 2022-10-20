@@ -3,13 +3,7 @@
   "version": "24.0.0",
   "private": true,
   "description": "Личный проект «{{projectTitle}}» от HTML Academy",
-  "repository": {
-    "type": "git",
-    "url": "{{sshUrl}}"
-  },
-  "bugs": {
-    "url": "{{bugsUrl}}"
-  },
+  "type": "module",
   "devDependencies": {
     "browser-sync": "2.26.14",
     "eslint": "7.18.0",
