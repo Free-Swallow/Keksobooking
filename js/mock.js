@@ -1,4 +1,4 @@
-import {getRandomPositiveInteger} from './main';
+import {getRandomPositiveInteger} from './util.js';
 
 // Create Post
 const DESCRIPTION_LIST = [
