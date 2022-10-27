@@ -1,3 +1,4 @@
+import {controlModalState, StateWords, addModalListener} from './util.js';
 const bigPictureTemplate = document.querySelector('.big-picture');
 const bigPictureImg = bigPictureTemplate.querySelector('.big-picture__img')
   .querySelector('img');
@@ -7,10 +8,17 @@ const bigPictureCommentList = bigPictureTemplate.querySelector('.social__comment
 const bigPictureMessage = bigPictureTemplate.querySelector('.social__caption');
 const commentTemplate = bigPictureTemplate.querySelector('.social__comment');
 const cancelButton = bigPictureTemplate.querySelector('.big-picture__cancel');
-const TOGGLES_CLASS = 'hidden';
+const addModal = () => controlModalState(bigPictureTemplate, StateWords.ADD);
+const removeModal = () => controlModalState(bigPictureTemplate, StateWords.REMOVE);
 // const STEP_SHOW_COMMENT = 5;
-const KeysClose = {
-  ESC: 'Escape'
+
+const resetModal = () => {
+  bigPictureImg.src = '';
+  bigPictureLikeCount.textContent = '';
+  bigPictureCommentCount.textContent = '';
+  bigPictureMessage.textContent = '';
+
+  bigPictureCommentList.innerHTML = '';
 };
 
 const showBigPicture = ({url, likes, comments, description}) => {
@@ -38,30 +46,7 @@ const showBigPicture = ({url, likes, comments, description}) => {
     bigPictureCommentList.appendChild(comment);
   }
 
-  function closePictureHandle() {
-    closePicture();
-  }
-
-  function closeKeyPictureHandle(evt) {
-    if (evt.key === KeysClose.ESC) {
-      evt.preventDefault();
-      closePicture();
-
-    }
-  }
-
-  function closePicture() {
-    bigPictureTemplate.classList.add(TOGGLES_CLASS);
-    document.body.classList.remove('modal-open');
-    cancelButton.removeEventListener('click', closePictureHandle);
-    document.removeEventListener('keydown', closeKeyPictureHandle);
-  }
-
-  cancelButton.addEventListener('click', closePictureHandle);
-  document.addEventListener('keydown', closeKeyPictureHandle);
-  document.body.classList.add('modal-open');
-
-  bigPictureTemplate.classList.remove(TOGGLES_CLASS);
+  addModalListener(addModal, removeModal, cancelButton, resetModal);
 };
 
 export {showBigPicture};

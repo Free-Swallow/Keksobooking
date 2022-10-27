@@ -1,6 +1,9 @@
-import {isCheckLength} from './util.js';
 import {createPicture} from './picture.js';
 import {createPostList} from './mock.js';
+import {changeUploadFile} from './upload-picture.js';
+import {showBigPicture} from './full-picture.js';
+import './validity.js';
+import {findCard} from './util.js';
 
 const picturesListNode = document.querySelector('.pictures');
 
@@ -14,4 +17,8 @@ const renderPicture = (pictureList) => {
 
 renderPicture(createPostList);
 
-isCheckLength('251');
+changeUploadFile();
+
+picturesListNode.addEventListener('click', (evt) => {
+  showBigPicture(findCard(evt, createPostList));
+});
