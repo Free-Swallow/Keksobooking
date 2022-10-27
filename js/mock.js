@@ -33,7 +33,7 @@ const MESSAGE_LIST = [
 const pur = () => (
   {
     id: getRandomPositiveInteger(0, 10000000000),
-    avatar: `img/avatar-${getRandomPositiveInteger(0, 6)}.svg`,
+    avatar: `img/avatar-${getRandomPositiveInteger(1, 6)}.svg`,
     message: MESSAGE_LIST[getRandomPositiveInteger(0, MESSAGE_LIST.length - 1)],
     name: NAME_LIST[getRandomPositiveInteger(0, NAME_LIST.length - 1)],
   }
