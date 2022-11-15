@@ -4,6 +4,7 @@ import {changeUploadFile} from './upload-picture.js';
 import {showBigPicture} from './full-picture.js';
 import './validity.js';
 import {findCard} from './util.js';
+import './image-editing.js';
 
 const picturesListNode = document.querySelector('.pictures');
 
@@ -20,5 +21,7 @@ renderPicture(createPostList);
 changeUploadFile();
 
 picturesListNode.addEventListener('click', (evt) => {
-  showBigPicture(findCard(evt, createPostList));
+  if (evt.target.nodeName === 'IMG') {
+    showBigPicture(findCard(evt, createPostList));
+  }
 });
