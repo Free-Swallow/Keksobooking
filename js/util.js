@@ -31,7 +31,8 @@ const controlModalState = (modal, state) => {
   if (state === StateWords.ADD) {
     bodyPage.classList.add(ClassList.MODAL_CLASS);
     modal.classList.remove(ClassList.HIDDEN_CLASS);
-  } if (state === StateWords.REMOVE) {
+  }
+  if (state === StateWords.REMOVE) {
     bodyPage.classList.remove(ClassList.MODAL_CLASS);
     modal.classList.add(ClassList.HIDDEN_CLASS);
   }
@@ -72,12 +73,10 @@ const addModalListener = (addState, removeState, closeButton, reset) => {
 // Поискать карточки в списке по айди таргета
 
 const findCard = (evt, list) => {
-  if (evt.target.nodeName === 'IMG') {
-    const map = new Map(list.map((item) => [item.id, item]));
-    const id = Number(evt.target.id);
+  const map = new Map(list.map((item) => [item.id, item]));
+  const id = Number(evt.target.id);
 
-    return map.get(id);
-  }
+  return map.get(id);
 };
 
 
