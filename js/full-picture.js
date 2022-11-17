@@ -1,4 +1,4 @@
-import {controlModalState, StateWords, addModalListener, ClassList} from './util.js';
+import {controlModalState, StateWords, addModalListener, ClassList, findCard} from './util.js';
 const bigPictureTemplate = document.querySelector('.big-picture');
 const bigPictureImg = bigPictureTemplate.querySelector('.big-picture__img')
   .querySelector('img');
@@ -9,6 +9,7 @@ const commentTemplate = bigPictureTemplate.querySelector('.social__comment');
 const cancelButton = bigPictureTemplate.querySelector('.big-picture__cancel');
 const commentLoadButton = bigPictureTemplate.querySelector('.comments-loader');
 const commentCounter = bigPictureTemplate.querySelector('.social__comment-count');
+const picturesListNode = document.querySelector('.pictures');
 const addModal = () => controlModalState(bigPictureTemplate, StateWords.ADD);
 const removeModal = () => controlModalState(bigPictureTemplate, StateWords.REMOVE);
 const STEP_SHOW_COMMENT = 5;
@@ -80,4 +81,12 @@ const showBigPicture = ({url, likes, comments, description}) => {
   commentLoadButton.addEventListener('click', increaseCommentCountHandler);
 };
 
-export {showBigPicture};
+const renderFullPicture = (data) => {
+  picturesListNode.addEventListener('click', (evt) => {
+    if (evt.target.nodeName === 'IMG') {
+      showBigPicture(findCard(evt, data));
+    }
+  });
+};
+
+export {renderFullPicture};

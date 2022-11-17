@@ -23,6 +23,7 @@ const SettingsSlider = {
   START_VALUE: 100,
 };
 const ClassesEffect = {
+  NONE: 'effect-none',
   CHROME: 'effects__preview--chrome',
   SEPIA: 'effects__preview--sepia',
   MARVIN: 'effects__preview--marvin',
@@ -195,6 +196,7 @@ const changeSliderHandler = (values, handle) => {
 
 // Сброс полей
 const resetUploadForm = () => {
+
   scale = defaultScale;
   editImageScale(scale);
   scaleControlValueNode.value = `${scale}%`;
@@ -226,5 +228,4 @@ manageScaleToggle();
 export {
   manageScaleToggle,
   resetLogicForm,
-  scale,
 };
