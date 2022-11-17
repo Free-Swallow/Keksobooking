@@ -1,8 +1,10 @@
 import {isCheckLength} from './util.js';
+import {renderSuccessMessage, renderErrorMessage} from './message.js';
 
 const imgUpload = document.querySelector('.img-upload');
 const hashTagInput = imgUpload.querySelector('.text__hashtags');
 const commentArea = imgUpload.querySelector('.text__description');
+const userForm = document.querySelector('.img-upload__form');
 
 const RequirementsHashTags = {
   HASHTAG_REGEX: /^#[A-Za-zА-Яа-я0-9]{1,19}$/,
@@ -34,7 +36,7 @@ const checkHashTagsHandle = () => {
     if (!RequirementsHashTags.HASHTAG_REGEX.test(tag)) {
       hashTagInput
         .setCustomValidity('Хештег должен начинаться со знака #, содержать только Кириллицу и Латиницу, ' +
-        'или числа от 0 до 9');
+          'или числа от 0 до 9');
 
       return false;
     }
@@ -79,6 +81,30 @@ const checkCommentHandler = () => {
   commentArea.reportValidity();
 };
 
+const setUserFormSubmit = (onSuccess) => {
+  userForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+
+    const formData = new FormData(evt.target);
+
+    fetch('https://24.javascript.pages.academy/kekstagram', {
+      method: 'POST',
+      body: formData,
+    },
+    )
+      .then((response) => {
+        if (response.ok) {
+          onSuccess();
+          renderSuccessMessage();
+        } else {
+          renderErrorMessage();
+        }
+      })
+      .catch(() => renderErrorMessage());
+  });
+};
+
 hashTagInput.addEventListener('change', checkHashTagsHandle);
 commentArea.addEventListener('change', checkCommentHandler);
-export {checkHashTagsHandle};
+
+export {checkHashTagsHandle, setUserFormSubmit};

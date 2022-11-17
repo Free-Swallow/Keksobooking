@@ -6,6 +6,7 @@ const imgPreviewNode = document.querySelector('.img-upload__preview')
 const effectsListNode = document.querySelector('.effects__list');
 const sliderNode = document.querySelector('.effect-level__slider');
 const levelEffectInput = document.querySelector('.effect-level__value');
+const filterDefault = document.querySelector('#effect-none');
 const defaultScale = scaleControlValueNode
   .value
   .split('')
@@ -23,6 +24,7 @@ const SettingsSlider = {
   START_VALUE: 100,
 };
 const ClassesEffect = {
+  NONE: 'effect-none',
   CHROME: 'effects__preview--chrome',
   SEPIA: 'effects__preview--sepia',
   MARVIN: 'effects__preview--marvin',
@@ -195,6 +197,7 @@ const changeSliderHandler = (values, handle) => {
 
 // Сброс полей
 const resetUploadForm = () => {
+
   scale = defaultScale;
   editImageScale(scale);
   scaleControlValueNode.value = `${scale}%`;
@@ -226,5 +229,4 @@ manageScaleToggle();
 export {
   manageScaleToggle,
   resetLogicForm,
-  scale,
 };
