@@ -6,7 +6,6 @@ const imgPreviewNode = document.querySelector('.img-upload__preview')
 const effectsListNode = document.querySelector('.effects__list');
 const sliderNode = document.querySelector('.effect-level__slider');
 const levelEffectInput = document.querySelector('.effect-level__value');
-const filterDefault = document.querySelector('#effect-none');
 const defaultScale = scaleControlValueNode
   .value
   .split('')
