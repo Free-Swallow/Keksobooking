@@ -1,9 +1,10 @@
 const picturesListNode = document.querySelector('.pictures');
+const filterNode = document.querySelector('.img-filters');
 const pictureTemplate = document.querySelector('#picture')
   .content
   .querySelector('.picture');
 
-const createPicture = (list) => {
+const renderCards = (list) => {
   const fragment = document.createDocumentFragment();
 
   list.forEach((item) => {
@@ -19,10 +20,13 @@ const createPicture = (list) => {
     pictureLikesCount.textContent = likes;
 
     fragment.appendChild(picture);
+    filterNode.classList.remove('img-filters--inactive');
   });
-  return fragment;
-};
 
-const renderCards = (data) => picturesListNode.appendChild(createPicture(data));
+  picturesListNode.querySelectorAll('.picture')
+    .forEach((item) => item.remove());
+
+  picturesListNode.appendChild(fragment);
+};
 
 export {renderCards};

@@ -1,6 +1,7 @@
 import {renderCards} from './picture-card.js';
 import {renderFullPicture} from './full-picture.js';
 import {createMessage, TypesMessage} from './message.js';
+import {setFilterChange} from './filter.js';
 
 const URL_DATA = 'https://24.javascript.pages.academy/kekstagram/data';
 
@@ -16,6 +17,7 @@ fetch(URL_DATA)
   .then((data) => {
     renderCards(data);
     renderFullPicture(data);
+    setFilterChange(data);
   })
   .catch((err) => {
     createMessage(err, TypesMessage.ERROR);
