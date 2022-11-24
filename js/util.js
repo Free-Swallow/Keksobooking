@@ -79,6 +79,14 @@ const findCard = (evt, list) => {
   return map.get(id);
 };
 
+const getUniqIds = (maxLength) => {
+  const uniqListId = new Set;
+  while (uniqListId.size < 10) {
+    uniqListId.add(getRandomPositiveInteger(0, maxLength));
+  }
+
+  return uniqListId;
+};
 
 export {
   getRandomPositiveInteger,
@@ -88,5 +96,6 @@ export {
   StateWords,
   KeysClose,
   addModalListener,
-  findCard
+  findCard,
+  getUniqIds,
 };

@@ -3,6 +3,7 @@ import {setUserFormSubmit} from './user-form.js';
 import './image-editing.js';
 import './api.js';
 import './message.js';
+import './filter.js';
 
 changeUploadFile();
 
